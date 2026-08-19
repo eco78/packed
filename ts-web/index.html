@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Packed - Share Presets & Samples</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Navigation Bar -->
+    <header class="navbar">
+      <div class="nav-brand">
+        <span class="logo-icon">📦</span>
+        <span class="logo-text">Packed</span>
+      </div>
+      <div class="nav-actions">
+        <button id="theme-toggle-btn" class="btn btn-secondary">☀️ Light Mode</button>
+        <button id="nav-browse-btn" class="btn btn-tab active">Browse Packs</button>
+        <button id="nav-create-btn" class="btn btn-tab">Create Pack</button>
+        <div id="user-profile-summary" class="hidden">
+          <span id="user-display-name"></span>
+          <button id="logout-btn" class="btn btn-small btn-danger">Logout</button>
+        </div>
+        <button id="open-login-btn" class="btn btn-primary">Login / Sign Up</button>
+      </div>
+    </header>
+
+    <!-- Main Content Views -->
+    <main class="content-container">
+      <!-- Browser View -->
+      <section id="view-browse" class="view-section active">
+        <div class="filter-bar">
+          <input type="text" id="search-input" placeholder="Search packs, tags, authors..." class="input-field" />
+          
+          <select id="sort-select" class="select-field">
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+            <option value="popular">Most Favorites</option>
+            <option value="alphabetical">Name (A-Z)</option>
+          </select>
+
+          <button id="filter-favorites-btn" class="btn btn-toggle">❤️ Favorites Only</button>
+        </div>
+
+        <div id="pack-grid" class="pack-grid">
+          <!-- Dynamically populated 3-column pack cards -->
+        </div>
+      </section>
+
+      <!-- Create Pack View -->
+      <section id="view-create" class="view-section hidden">
+        <div class="form-container">
+          <h2>Create New Preset / Sample Pack</h2>
+          <form id="create-pack-form">
+            <div class="form-group">
+              <label for="pack-name">Pack Name *</label>
+              <input type="text" id="pack-name" required placeholder="e.g. Cyberpunk Synth Vault" class="input-field" />
+            </div>
+
+            <div class="form-group">
+              <label for="pack-privacy">Privacy Setting *</label>
+              <select id="pack-privacy" class="select-field">
+                <option value="public">Public (Visible to everyone)</option>
+                <option value="unlisted">Unlisted (Anyone with link)</option>
+                <option value="private">Private (Only specific users)</option>
+              </select>
+            </div>
+
+            <div id="allowed-users-group" class="form-group hidden">
+              <label for="allowed-users">Allowed Usernames (Comma separated)</label>
+              <input type="text" id="allowed-users" placeholder="producer1, synthwave_king" class="input-field" />
+            </div>
+
+            <div class="form-group">
+              <label for="pack-cover">Cover Image URL *</label>
+              <input type="url" id="pack-cover" required placeholder="https://images.unsplash.com/photo-..." class="input-field" />
+            </div>
+
+            <div class="form-group">
+              <label for="pack-video">Preview Video URL (Optional MP4/WebM)</label>
+              <input type="url" id="pack-video" placeholder="https://example.com/demo.mp4" class="input-field" />
+            </div>
+
+            <div class="form-group">
+              <label for="pack-description">Description (Optional)</label>
+              <textarea id="pack-description" rows="3" placeholder="Describe the contents and genre..." class="input-field"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="pack-tags">Tags (Optional, comma separated)</label>
+              <input type="text" id="pack-tags" placeholder="synthwave, bass, serum, 128bpm" class="input-field" />
+            </div>
+
+            <div class="form-group">
+              <label>Select Included Presets & Samples *</label>
+              <input type="text" id="item-search-input" placeholder="Search your owned sounds..." class="input-field search-sub" />
+              <div id="item-selector-list" class="item-selector-list">
+                <!-- Selectable item list -->
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-large">Publish Pack</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal hidden">
+      <div class="modal-overlay"></div>
+      <div class="modal-card">
+        <button id="close-login-btn" class="modal-close">&times;</button>
+        <h2>Welcome to Packed</h2>
+        <p class="modal-subtitle">Login or register to create and share sound packs</p>
+        
+        <form id="login-form">
+          <div class="form-group">
+            <label for="login-username">Username</label>
+            <input type="text" id="login-username" required class="input-field" placeholder="SoundCrafter" />
+          </div>
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" required class="input-field" placeholder="••••••••" />
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
